@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PE私域社群 · 完整SOP转化漏斗</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --navy: #0B1F3A;
+    --navy-mid: #132845;
+    --navy-light: #1E3A5F;
+    --blue: #1D6FA4;
+    --blue-bright: #2589C8;
+    --gold: #E8A838;
+    --gold-light: #F5C96A;
+    --teal: #0E8C7A;
+    --teal-light: #12B09A;
+    --coral: #D9543A;
+    --coral-light: #E8745C;
+    --purple: #6B4BA8;
+    --green: #2E7D52;
+    --slate: #E8EEF4;
+    --slate-mid: #C8D6E0;
+    --text-primary: #0B1F3A;
+    --text-secondary: #4A6080;
+    --text-muted: #7A90A8;
+    --white: #FFFFFF;
+    --border: rgba(11,31,58,0.1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0B1F3A 0%, #1E3A5F 50%, #132845 100%);
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(232,168,56,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .header-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .header-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    max-width: 620px;
+  }
+  .header-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .header-tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  .tag-s { background: rgba(29,111,164,0.3); color: #7DC4EE; border: 1px solid rgba(29,111,164,0.5); }
+  .tag-a { background: rgba(232,168,56,0.2); color: #F5C96A; border: 1px solid rgba(232,168,56,0.4); }
+  .tag-note { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.1); }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ── FUNNEL CONNECTOR ── */
+  .funnel-connector {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 0 auto;
+    position: relative;
+    height: 36px;
+  }
+  .funnel-connector::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+  }
+  .connector-label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--navy);
+    padding: 2px 12px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+  }
+
+  /* ── STAGE CARD ── */
+  .stage {
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: border-color 0.2s;
+  }
+  .stage:hover { border-color: rgba(255,255,255,0.15); }
+
+  .stage-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+    position: relative;
+  }
+  .stage-header:hover { background: rgba(255,255,255,0.03); }
+
+  .stage-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .stage-meta { flex: 1; min-width: 0; }
+  .stage-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+    opacity: 0.6;
+  }
+  .stage-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .stage-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 2px;
+  }
+
+  .stage-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  .stage-pill {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .chevron {
+    font-size: 18px;
+    color: rgba(255,255,255,0.3);
+    transition: transform 0.25s;
+    line-height: 1;
+  }
+  .chevron.open { transform: rotate(90deg); }
+
+  /* ── STAGE BODY ── */
+  .stage-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .stage-body.open { max-height: 2000px; }
+  .stage-body-inner {
+    padding: 0 24px 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .body-top-gap { height: 20px; }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  @media (max-width: 700px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  }
+
+  /* ── INFO BOX ── */
+  .ibox {
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .ibox-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ibox-label .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .ibox ul { list-style: none; padding: 0; }
+  .ibox ul li {
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.65);
+    padding: 5px 0 5px 16px;
+    position: relative;
+    line-height: 1.55;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .ibox ul li:last-child { border-bottom: none; }
+  .ibox ul li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    color: rgba(255,255,255,0.25);
+  }
+  .ibox ul li strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+  .ibox ul li.hi { color: rgba(255,255,255,0.85); }
+  .ibox ul li.hi::before { content: '★'; font-size: 9px; left: 1px; color: var(--gold); }
+  .ibox ul li.warn { color: #FCA5A5; }
+  .ibox ul li.warn::before { content: '✕'; font-size: 9px; left: 2px; color: #F87171; }
+
+  /* box bg variants */
+  .bg-blue   { background: rgba(29,111,164,0.12); border-color: rgba(29,111,164,0.25); }
+  .bg-gold   { background: rgba(232,168,56,0.08); border-color: rgba(232,168,56,0.2); }
+  .bg-teal   { background: rgba(14,140,122,0.1);  border-color: rgba(14,140,122,0.25); }
+  .bg-coral  { background: rgba(217,84,58,0.1);   border-color: rgba(217,84,58,0.2); }
+  .bg-purple { background: rgba(107,75,168,0.12); border-color: rgba(107,75,168,0.25); }
+  .bg-green  { background: rgba(46,125,82,0.1);   border-color: rgba(46,125,82,0.25); }
+  .bg-slate  { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+
+  /* ── NOTE BAR ── */
+  .note-bar {
+    border-left: 3px solid;
+    border-radius: 0 10px 10px 0;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    margin-top: 12px;
+  }
+  .note-bar strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+  .nb-gold  { border-color: var(--gold); background: rgba(232,168,56,0.06); }
+  .nb-blue  { border-color: var(--blue-bright); background: rgba(37,137,200,0.06); }
+  .nb-teal  { border-color: var(--teal-light); background: rgba(18,176,154,0.06); }
+  .nb-coral { border-color: var(--coral-light); background: rgba(217,84,58,0.06); }
+  .nb-purple{ border-color: #9B7FD4; background: rgba(107,75,168,0.08); }
+
+  /* ── ACTIVITY CARDS (Stage 0) ── */
+  .activity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  @media (max-width: 700px) { .activity-grid { grid-template-columns: 1fr; } }
+  .act-card {
+    border-radius: 12px;
+    padding: 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+  }
+  .act-type {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+  .act-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .act-detail {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+  }
+  .act-freq {
+    margin-top: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  /* ── SOP FLOW (Stage 0) ── */
+  .sop-flow {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    margin: 14px 0;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .sop-step {
+    flex: 1;
+    min-width: 110px;
+    text-align: center;
+    position: relative;
+  }
+  .sop-step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -8px;
+    top: 18px;
+    color: rgba(255,255,255,0.2);
+    font-size: 14px;
+  }
+  .sop-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 auto 6px;
+  }
+  .sop-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.4;
+    padding: 0 4px;
+  }
+
+  /* ── SCORE TABLE ── */
+  .score-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 4px; }
+  .score-table th {
+    background: rgba(255,255,255,0.06);
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+  .score-table td {
+    padding: 8px 10px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.6);
+    vertical-align: top;
+  }
+  .score-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .score-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  /* ── DAY TIMELINE ── */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 1.5px;
+    background: rgba(255,255,255,0.1);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .tl-dot {
+    position: absolute;
+    left: -24px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid;
+  }
+  .tl-phase {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tl-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .tl-items { font-size: 11.5px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* ── PRODUCT TABLE ── */
+  .product-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .product-table th {
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.06);
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    text-align: left;
+  }
+  .product-table td {
+    padding: 9px 12px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.65);
+    vertical-align: top;
+  }
+  .product-table td strong { color: rgba(255,255,255,0.9); }
+
+  /* ── KPI GRID ── */
+  .kpi-section { margin-top: 32px; }
+  .kpi-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 12px;
+  }
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 700px) { .kpi-grid { grid-template-columns: 1fr 1fr; } }
+  .kpi-card {
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.03);
+    text-align: center;
+  }
+  .kpi-metric {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .kpi-name {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.4;
+    margin-top: 6px;
+  }
+  .kpi-target {
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 6px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  /* ── SPLIT PILLS ── */
+  .split-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .split-pill {
+    flex: 1;
+    text-align: center;
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid;
+    line-height: 1.5;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin: 20px 0 10px;
+  }
+
+  /* ── STAGE COLOR THEMES ── */
+  /* Stage 0: Gold - Marketing */
+  .s0 .stage-header { background: linear-gradient(135deg, rgba(232,168,56,0.15) 0%, rgba(30,58,95,0.4) 100%); }
+  .s0 .stage-badge { background: rgba(232,168,56,0.2); }
+  .s0 .stage-eyebrow { color: var(--gold); }
+  .s0 .stage-pill { background: rgba(232,168,56,0.2); color: var(--gold-light); border: 1px solid rgba(232,168,56,0.35); }
+
+  /* Stage 1: Blue - Screening */
+  .s1 .stage-header { background: linear-gradient(135deg, rgba(29,111,164,0.2) 0%, rgba(30,58,95,0.4) 100%); }
+  .s1 .stage-badge { background: rgba(29,111,164,0.25); }
+  .s1 .stage-eyebrow { color: #7DC4EE; }
+  .s1 .stage-pill { background: rgba(29,111,164,0.2); color: #7DC4EE; border: 1px solid rgba(29,111,164,0.4); }
+
+  /* Stage 2: Teal - Onboarding */
+  .s2 .stage-header { background: linear-gradient(135deg, rgba(14,140,122,0.18) 0%, rgba(30,58,95,0.4) 100%); }
+  .s2 .stage-badge { background: rgba(14,140,122,0.25); }
+  .s2 .stage-eyebrow { color: #6DD4C4; }
+  .s2 .stage-pill { background: rgba(14,140,122,0.2); color: #6DD4C4; border: 1px solid rgba(14,140,122,0.4); }
+
+  /* Stage 3: Purple - Community */
+  .s3 .stage-header { background: linear-gradient(135deg, rgba(107,75,168,0.2) 0%, rgba(30,58,95,0.4) 100%); }
+  .s3 .stage-badge { background: rgba(107,75,168,0.25); }
+  .s3 .stage-eyebrow { color: #B49FDA; }
+  .s3 .stage-pill { background: rgba(107,75,168,0.2); color: #B49FDA; border: 1px solid rgba(107,75,168,0.4); }
+
+  /* Stage 4: Coral - Conversion */
+  .s4 .stage-header { background: linear-gradient(135deg, rgba(217,84,58,0.18) 0%, rgba(30,58,95,0.4) 100%); }
+  .s4 .stage-badge { background: rgba(217,84,58,0.25); }
+  .s4 .stage-eyebrow { color: #F0A08C; }
+  .s4 .stage-pill { background: rgba(217,84,58,0.2); color: #F0A08C; border: 1px solid rgba(217,84,58,0.4); }
+
+  /* Stage 5: Green - Closing */
+  .s5 .stage-header { background: linear-gradient(135deg, rgba(46,125,82,0.18) 0%, rgba(30,58,95,0.4) 100%); }
+  .s5 .stage-badge { background: rgba(46,125,82,0.25); }
+  .s5 .stage-eyebrow { color: #7DC4A0; }
+  .s5 .stage-pill { background: rgba(46,125,82,0.2); color: #7DC4A0; border: 1px solid rgba(46,125,82,0.4); }
+
+  /* Stage 6: Blue mid - Retention */
+  .s6 .stage-header { background: linear-gradient(135deg, rgba(29,111,164,0.15) 0%, rgba(11,31,58,0.6) 100%); }
+  .s6 .stage-badge { background: rgba(29,111,164,0.2); }
+  .s6 .stage-eyebrow { color: #7DC4EE; }
+  .s6 .stage-pill { background: rgba(29,111,164,0.15); color: #7DC4EE; border: 1px solid rgba(29,111,164,0.35); }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* ── FUNNEL VISUAL WIDTH TAPER ── */
+  .funnel-wrap {
+    position: relative;
+  }
+  .stage-0-w { max-width: 100%; }
+  .stage-1-w { max-width: 96%; margin: 0 auto; }
+  .stage-2-w { max-width: 92%; margin: 0 auto; }
+  .stage-3-w { max-width: 88%; margin: 0 auto; }
+  .stage-4-w { max-width: 84%; margin: 0 auto; }
+  .stage-5-w { max-width: 80%; margin: 0 auto; }
+  .stage-6-w { max-width: 80%; margin: 0 auto; }
+
+  .funnel-tap-label {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.18);
+    padding: 6px 0;
+  }
+
+  /* ── ROLE PILLS ── */
+  .role-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .role-pill {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="page-header">
+  <div class="header-eyebrow">Prominent Education · Private Community SOP</div>
+  <div class="header-title">高客单价私域社群 · 完整转化漏斗</div>
+  <div class="header-sub">从流量来源到续费转介绍的全链路SOP，涵盖Marketing、Sales、学术团队的协作节点</div>
+  <div class="header-tags">
+    <span class="header-tag tag-s">S类 · IGCSE / A-Level 冲刺</span>
+    <span class="header-tag tag-a">A类 · KS3 长线培养</span>
+    <span class="header-tag tag-note">点击各阶段展开详情</span>
+  </div>
+</div>
+
+<div class="main">
+<div class="funnel-wrap">
+
+<!-- ════════════════════════════════
+     STAGE 0 · MARKETING & TRAFFIC
+════════════════════════════════ -->
+<div class="stage-0-w">
+<div class="stage s0" id="stage-0">
+  <div class="stage-header" onclick="toggle(0)">
+    <div class="stage-badge">📣</div>
+    <div class="stage-meta">
+      <div class="stage-eyebrow">Marketing核心 · 最重要入口</div>
+      <div class="stage-title">流量来源 · 活动运营 · 宣传SOP</div>
+      <div class="stage-sub">小红书/视频号只宣传具体活动，通过活动报名完成初步筛选</div>
+    </div>
+    <div class="stage-right">
+      <div class="stage-pill">Marketing负责</div>
+      <div class="chevron" id="chev0">›</div>
+    </div>
+  </div>
+  <div class="stage-body" id="body0">
+  <div class="stage-body-inner">
+    <div class="body-top-gap"></div>
+
+    <!-- 核心活动矩阵 -->
+    <div class="section-label">核心引流活动矩阵（三类入口）</div>
+    <div class="activity-grid">
+
+      <div class="act-card" style="background: rgba(232,168,56,0.08); border-color: rgba(232,168,56,0.2)">
+        <div class="act-type" style="background: rgba(232,168,56,0.2); color: #F5C96A;">S类主力入口</div>
+        <div class="act-title">Examiner Workshop<br>考官试卷批改直播</div>
+        <div class="act-detail">真实IGCSE/A-Level试卷现场批改，逐题拆解Mark Scheme应用，直播展示考官评分逻辑</div>
+        <div class="act-freq" style="background: rgba(232,168,56,0.15); color: #F5C96A;">每周一次 · 固定时段</div>
+      </div>
+
+      <div class="act-card" style="background: rgba(29,111,164,0.1); border-color: rgba(29,111,164,0.25)">
+        <div class="act-type" style="background: rgba(29,111,164,0.2); color: #7DC4EE;">S类转轨入口</div>
+        <div class="act-title">IGCSE → IB / A-Level<br>课程转轨规划直播</div>
+        <div class="act-detail">从IGCSE选科策略到A-Level衔接规划，重点覆盖香港/新加坡/曼谷国际学校家庭</div>
+        <div class="act-freq" style="background: rgba(29,111,164,0.15); color: #7DC4EE;">每月一次 · 重点场次</div>
+      </div>
+
+      <div class="act-card" style="background: rgba(14,140,122,0.08); border-color: rgba(14,140,122,0.2)">
+        <div class="act-type" style="background: rgba(14,140,122,0.15); color: #6DD4C4;">A类主力入口</div>
+        <div class="act-title">KS3 → IGCSE Readiness<br>学术能力衔接评估</div>
+        <div class="act-detail">Year 7-9学术写作样本诊断，阅读深度测试，提前识别IGCSE潜在短板</div>
+        <div class="act-freq" style="background: rgba(14,140,122,0.1); color: #6DD4C4;">每六周一次 · A群同步启动</div>
+      </div>
+
+      <div class="act-card" style="background: rgba(107,75,168,0.08); border-color: rgba(107,75,168,0.2)">
+        <div class="act-type" style="background: rgba(107,75,168,0.15); color: #B49FDA;">S类精准入口</div>
+        <div class="act-title">Mock成绩复盘<br>失分诊断专场</div>
+        <div class="act-detail">匿名试卷失分结构分析，Essay vs知识点失分区分，考前6-8周冲刺路径规划</div>
+        <div class="act-freq" style="background: rgba(107,75,168,0.12); color: #B49FDA;">考前6周密集推送</div>
+      </div>
+
+      <div class="act-card" style="background: rgba(46,125,82,0.08); border-color: rgba(46,125,82,0.2)">
+        <div class="act-type" style="background: rgba(46,125,82,0.12); color: #7DC4A0;">A类情景入口</div>
+        <div class="act-title">学术写作样本<br>免费分析活动</div>
+        <div class="act-detail">提交孩子一篇作文/学科报告，由学术团队出具具体能力评估反馈（非通用建议）</div>
+        <div class="act-freq" style="background: rgba(46,125,82,0.1); color: #7DC4A0;">常规滚动 · 全年持续</div>
+      </div>
+
+      <div class="act-card" style="background: rgba(217,84,58,0.08); border-color: rgba(217,84,58,0.2)">
+        <div class="act-type" style="background: rgba(217,84,58,0.15); color: #F0A08C;">B类升级入口</div>
+        <div class="act-title">转轨国际学校<br>全英文课堂适应讲座</div>
+        <div class="act-detail">科学词汇 / 全英文指令理解 / 学术写作快速上手，定位刚进入国际学校1-3个月家庭</div>
+        <div class="act-freq" style="background: rgba(217,84,58,0.1); color: #F0A08C;">每学期两次 · 开学后4周</div>
+      </div>
+
+    </div>
+
+    <!-- 宣传SOP -->
+    <div class="section-label">小红书 / 视频号宣传SOP</div>
+    <div class="grid-2">
+      <div class="ibox bg-gold">
+        <div class="ibox-label" style="color: #F5C96A;"><div class="dot" style="background:#E8A838"></div>内容策略</div>
+        <ul>
+          <li class="hi">宣传<strong>具体活动</strong>，不宣传"家长群"或机构介绍</li>
+          <li>活动文案聚焦：<strong>具体痛点 + 可见收益</strong>（例：你家孩子essay总被扣"analysis not deep enough"？本周三考官直播现场拆解）</li>
+          <li>每篇内容附<strong>报名链接</strong>，链接跳转至活动表单（含筛选问题）</li>
+          <li>不发"关注我们获取IGCSE资料包"类泛流量内容</li>
+          <li>老师IP号定期发布专业判断类内容（失分分析/Mark Scheme解读），不做销售号</li>
+        </ul>
+      </div>
+      <div class="ibox bg-slate">
+        <div class="ibox-label" style="color: rgba(255,255,255,0.6);"><div class="dot" style="background:rgba(255,255,255,0.4)"></div>发布节奏（每周）</div>
+        <ul>
+          <li><strong>周一</strong>：本周活动预告（标题含具体科目/年级/考试局）</li>
+          <li><strong>周三</strong>：专业内容帖（诊断案例/Mark Scheme解读）</li>
+          <li><strong>周五</strong>：直播回顾或家长问题精选</li>
+          <li>考前密集期（考前6周）：每日一帖，内容强调时间紧迫性和具体失分类型</li>
+          <li>所有内容审核：学术负责人把关专业准确性，Marketing负责排版与发布</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Examiner Workshop SOP -->
+    <div class="section-label">每周Examiner Workshop · 执行SOP</div>
+    <div class="sop-flow">
+      <div class="sop-step">
+        <div class="sop-num" style="background: rgba(232,168,56,0.2); color: #F5C96A; border-color: rgba(232,168,56,0.3);">1</div>
+        <div class="sop-label"><strong>提前7天</strong><br>Marketing发布预告<br>开放报名表单</div>
+      </div>
+      <div class="sop-step">
+        <div class="sop-num" style="background: rgba(232,168,56,0.2); color: #F5C96A; border-color: rgba(232,168,56,0.3);">2</div>
+        <div class="sop-label"><strong>提前3天</strong><br>学术负责人确认<br>主讲教师+试卷素材</div>
+      </div>
+      <div class="sop-step">
+        <div class="sop-num" style="background: rgba(232,168,56,0.2); color: #F5C96A; border-color: rgba(232,168,56,0.3);">3</div>
+        <div class="sop-label"><strong>直播当天</strong><br>顾问同步在线<br>收集提问&标记Lead</div>
+      </div>
+      <div class="sop-step">
+        <div class="sop-num" style="background: rgba(232,168,56,0.2); color: #F5C96A; border-color: rgba(232,168,56,0.3);">4</div>
+        <div class="sop-label"><strong>直播结束后</strong><br>系统自动打标签<br>顾问24h内跟进</div>
+      </div>
+      <div class="sop-step">
+        <div class="sop-num" style="background: rgba(232,168,56,0.2); color: #F5C96A; border-color: rgba(232,168,56,0.3);">5</div>
+        <div class="sop-label"><strong>48小时内</strong><br>符合条件者收到<br>社群定向邀请</div>
+      </div>
+    </div>
+
+    <!-- 谁来负责 -->
+    <div class="note-bar nb-gold">
+      <strong>团队分工</strong>：Marketing负责宣传物料、平台发布、报名表单、数据统计 ｜ 学术负责人负责直播内容审核、主讲教师安排 ｜ 销售顾问负责直播中Lead标记与会后跟进 ｜ 禁止销售顾问在直播中主动推课，保持活动的专业纯粹性
+    </div>
+    <div class="note-bar nb-gold" style="margin-top:8px">
+      <strong>注意</strong>：C类Lead（基础英语/目标模糊）参加活动后不进入核心社群，保留在企业微信朋友圈/内容池，待出现明确考试或入学需求后再转入
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<div class="funnel-connector"><div class="connector-label">活动报名表单 · 系统自动打标签</div></div>
+
+<!-- ════════════════════════════════
+     STAGE 1 · SCREENING
+════════════════════════════════ -->
+<div class="stage-1-w">
+<div class="stage s1" id="stage-1">
+  <div class="stage-header" onclick="toggle(1)">
+    <div class="stage-badge">🔍</div>
+    <div class="stage-meta">
+      <div class="stage-eyebrow">第一阶段 · 准入控制</div>
+      <div class="stage-title">申请筛选 · 自动标签 · Lead评分</div>
+      <div class="stage-sub">报名即筛选，表单设计决定进群质量</div>
+    </div>
+    <div class="stage-right">
+      <div class="stage-pill">Sales + System</div>
+      <div class="chevron" id="chev1">›</div>
+    </div>
+  </div>
+  <div class="stage-body" id="body1">
+  <div class="stage-body-inner">
+    <div class="body-top-gap"></div>
+
+    <div class="grid-2">
+      <!-- 报名表单必收字段 -->
+      <div class="ibox bg-blue">
+        <div class="ibox-label" style="color:#7DC4EE"><div class="dot" style="background:#1D6FA4"></div>活动报名表单 · 必收字段（系统自动打标签）</div>
+        <ul>
+          <li>学生年级（Year 7-13）</li>
+          <li>所在国家/地区（香港/新加坡/英国/曼谷等）</li>
+          <li>学校类型（国际学校/私校/公立）</li>
+          <li>课程体系（IGCSE / A-Level / IB / KS3）</li>
+          <li>Exam Board（Cambridge / Edexcel / AQA / OCR）</li>
+          <li>关注科目（最多选3个）</li>
+          <li>当前成绩 / 目标成绩</li>
+          <li>最近一次考试或Mock时间</li>
+          <li>最主要的失分问题（开放填写）</li>
+          <li>是否有近期试卷或essay可以提交</li>
+          <li>预期每周上课频率</li>
+          <li class="hi">对课包预算的大致预期（选择题，不强制填写）</li>
+        </ul>
+      </div>
+
+      <!-- Lead评分 -->
+      <div class="ibox bg-slate">
+        <div class="ibox-label" style="color:rgba(255,255,255,0.6)"><div class="dot" style="background:rgba(255,255,255,0.3)"></div>Lead评分机制（5维度，满分10分）</div>
+        <table class="score-table">
+          <thead>
+            <tr><th>维度</th><th>0分</th><th>1分</th><th>2分</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>课程匹配</td><td>无关</td><td>部分匹配</td><td>高度匹配</td></tr>
+            <tr><td>需求清晰度</td><td>无明确问题</td><td>大致问题</td><td>问题具体</td></tr>
+            <tr><td>时间节点</td><td>无节点</td><td>长期计划</td><td>明确考试/入学</td></tr>
+            <tr><td>支付匹配</td><td>明显不匹配</td><td>未确认</td><td>可接受最低课包</td></tr>
+            <tr><td>配合意愿</td><td>不愿提交材料</td><td>部分配合</td><td>主动配合</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+          <span class="score-badge" style="background:rgba(46,125,82,0.2);color:#7DC4A0;border:1px solid rgba(46,125,82,0.4)">8-10分 → 直接一对一诊断或邀请入群</span>
+          <span class="score-badge" style="background:rgba(232,168,56,0.15);color:#F5C96A;border:1px solid rgba(232,168,56,0.3)">5-7分 → 入群培育</span>
+          <span class="score-badge" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.1)">0-4分 → 内容池，不占销售资源</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 直接排除 -->
+    <div class="ibox bg-coral" style="margin-top:12px">
+      <div class="ibox-label" style="color:#F0A08C"><div class="dot" style="background:#D9543A"></div>直接排除条件（不进入社群）</div>
+      <div class="grid-2">
+        <ul>
+          <li class="warn">预算明显低于最低课包（10小时）</li>
+          <li class="warn">只寻找单节临时辅导</li>
+          <li class="warn">要求保证A*或保证录取结果</li>
+          <li class="warn">学生完全拒绝参与</li>
+        </ul>
+        <ul>
+          <li class="warn">有代写代考等学术不诚信需求</li>
+          <li class="warn">不愿提交任何学生信息或材料</li>
+          <li class="warn">非英式课程体系（IB / AP / 中高考）</li>
+          <li class="warn">期望几节课提升多个等级</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split-row">
+      <div class="split-pill" style="background:rgba(29,111,164,0.12);color:#7DC4EE;border-color:rgba(29,111,164,0.3)">
+        <strong>S类社群</strong><br>Year 9–13 · IGCSE/A-Level · 有明确考试节点 · 关注exam technique & A/A*
+      </div>
+      <div class="split-pill" style="background:rgba(232,168,56,0.08);color:#F5C96A;border-color:rgba(232,168,56,0.25)">
+        <strong>A类社群</strong><br>Year 7–9 · KS3/IGCSE预备 · 长期能力建设 · 可接受持续学习
+      </div>
+    </div>
+
+  </div>
+  </div>
+</div>
+</div>
+
+<div class="funnel-connector"><div class="connector-label">顾问人工确认 → 定向邀请入群</div></div>
+
+<!-- ════════════════════════════════
+     STAGE 2 · ONBOARDING
+════════════════════════════════ -->
+<div class="stage-2-w">
+<div class="stage s2" id="stage-2">
+  <div class="stage-header" onclick="toggle(2)">
+    <div class="stage-badge">🚪</div>
+    <div class="stage-meta">
+      <div class="stage-eyebrow">第二阶段 · 入群承接</div>
+      <div class="stage-title">入群首日激活 · 材料提交</div>
+      <div class="stage-sub">24小时内完成激活，材料提交率是核心质量指标</div>
+    </div>
+    <div class="stage-right">
+      <div class="stage-pill">社群运营 + Sales</div>
+      <div class="chevron" id="chev2">›</div>
+    </div>
+  </div>
+  <div class="stage-body" id="body2">
+  <div class="stage-body-inner">
+    <div class="body-top-gap"></div>
+    <div class="grid-2">
+      <div class="ibox bg-teal">
+        <div class="ibox-label" style="color:#6DD4C4"><div class="dot" style="background:#0E8C7A"></div>入群24小时内 · 必完成动作</div>
+        <ul>
+          <li class="hi">修改群昵称：<strong>年级 + 地区 + 科目</strong>（如 Y11·HK·English Lit）</li>
+          <li>阅读群公告（运营周期/提问规则/个案处理方式）</li>
+          <li>填写需求登记（当前成绩/目标成绩/最近考试节点）</li>
+          <li class="hi"><strong>提交首份材料</strong>：试卷 / essay / 写作样本（核心激活动作）</li>
+          <li>选择希望参加的直播场次</li>
+          <li>确认是否接受顾问一对一联系</li>
+        </ul>
+      </div>
+      <div class="ibox bg-slate">
+        <div class="ibox-label" style="color:rgba(255,255,255,0.6)"><div class="dot" style="background:rgba(255,255,255,0.3)"></div>沉默家长唤醒机制（★新增）</div>
+        <ul>
+          <li class="hi"><strong>48小时未提交材料</strong>：顾问私信，用具体内容钩子而非"有什么问题吗"</li>
+          <li>话术示例：「已看到您孩子在备考 [科目]，上周群里分析了一个和您孩子情况很像的essay失分结构，想单独发给您看一下？」</li>
+          <li class="hi"><strong>5天未互动</strong>：顾问第二次触达，主动提供一个具体的免费分析结果，建立个人感知</li>
+          <li>禁止群发式唤醒，必须逐个个性化</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note-bar nb-teal">
+      <strong>群公告必须包含</strong>：社群适用对象 / 运营周期（14天/21天）/ 提问时间窗口（如每周三20:00-21:00）/ 个案问题转私聊处理 / 隐私规则。禁止在公告中出现任何价格或课包信息。
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<div class="funnel-connector"><div class="connector-label">进入主题化运营周期</div></div>
+
+<!-- ════════════════════════════════
+     STAGE 3 · COMMUNITY
+════════════════════════════════ -->
+<div class="stage-3-w">
+<div class="stage s3" id="stage-3">
+  <div class="stage-header" onclick="toggle(3)">
+    <div class="stage-badge">📚</div>
+    <div class="stage-meta">
+      <div class="stage-eyebrow">第三阶段 · 信任建立</div>
+      <div class="stage-title">主题化社群运营 · 内容节奏</div>
+      <div class="stage-sub">S类14天 · A类21天 · 管理员主导，禁止全天自由聊天</div>
+    </div>
+    <div class="stage-right">
+      <div class="stage-pill">学术 + 运营</div>
+      <div class="chevron" id="chev3">›</div>
+    </div>
+  </div>
+  <div class="stage-body" id="body3">
+  <div class="stage-body-inner">
+    <div class="body-top-gap"></div>
+    <div class="grid-2">
+
+      <!-- S类14天框架 -->
+      <div class="ibox bg-purple">
+        <div class="ibox-label" style="color:#B49FDA"><div class="dot" style="background:#6B4BA8"></div>S类 · 14天运营框架</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot" style="background:rgba(180,159,218,0.4);border-color:#B49FDA"></div>
+            <div class="tl-phase" style="color:#B49FDA">Day 1-3 · 问题识别</div>
+            <div class="tl-title">让家长明确当前问题</div>
+            <div class="tl-items">Exam Board评分标准解读 · 失分类型分类（知识 vs 技巧 vs 结构）· 材料提交&初步诊断</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="background:rgba(180,159,218,0.4);border-color:#B49FDA"></div>
+            <div class="tl-phase" style="color:#B49FDA">Day 4-7 · 专业展示</div>
+            <div class="tl-title">展示PE教师分析能力</div>
+            <div class="tl-items">匿名试卷拆解 · Mark Scheme应用 · 高分vs普通答案对比 · Essay structure · Examiner Report解读</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="background:rgba(180,159,218,0.4);border-color:#B49FDA"></div>
+            <div class="tl-phase" style="color:#B49FDA">Day 8-11 · 路径建立</div>
+            <div class="tl-title">让家长理解课程方案逻辑</div>
+            <div class="tl-items">不同失分问题所需课时 · 8-12周学习路径 · 考官教师vs资深教师分工 · 真实案例复盘</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="background:rgba(180,159,218,0.4);border-color:#B49FDA"></div>
+            <div class="tl-phase" style="color:#B49FDA">Day 12-14 · 诊断转化</div>
+            <div class="tl-title">引导成熟Lead进入一对一</div>
+            <div class="tl-items">教师/考官直播 · 开放有限诊断名额 · 顾问一对一联系 · 输出个人课程建议</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- A类21天框架 -->
+      <div class="ibox bg-blue">
+        <div class="ibox-label" style="color:#7DC4EE"><div class="dot" style="background:#1D6FA4"></div>A类 · 21天运营框架</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot" style="background:rgba(125,196,238,0.4);border-color:#7DC4EE"></div>
+            <div class="tl-phase" style="color:#7DC4EE">Week 1 · 能力识别</div>
+            <div class="tl-title">区分"日常英语"与"学术能力"</div>
+            <div class="tl-items">Academic reading深度 · 阅读理解vs观点提取 · 写作样本评估 · IGCSE Readiness基础框架</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="background:rgba(125,196,238,0.4);border-color:#7DC4EE"></div>
+            <div class="tl-phase" style="color:#7DC4EE">Week 2 · 能力路径</div>
+            <div class="tl-title">展示长期培养结构</div>
+            <div class="tl-items">从复述→解释→分析能力阶梯 · Analytical writing入门 · Science和Humanities学科语言 · 独立学习能力</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot" style="background:rgba(125,196,238,0.4);border-color:#7DC4EE"></div>
+            <div class="tl-phase" style="color:#7DC4EE">Week 3 · 个体规划</div>
+            <div class="tl-title">将长期焦虑转化为明确计划</div>
+            <div class="tl-items">学生样本案例 · 6-12个月能力路径 · 30/50小时课程结构介绍 · 家长工作坊 · 一对一学习规划申请</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 内容配比 + 互动节奏 -->
+    <div class="grid-2" style="margin-top:12px">
+      <div class="ibox bg-slate">
+        <div class="ibox-label" style="color:rgba(255,255,255,0.6)"><div class="dot" style="background:rgba(255,255,255,0.3)"></div>内容配比</div>
+        <ul>
+          <li><strong>50%</strong> 专业诊断判断（失分分析/考试逻辑）</li>
+          <li><strong>20%</strong> 真实案例拆解（匿名试卷/essay对比）</li>
+          <li><strong>15%</strong> 教师过程展示（如何用考官视角批改）</li>
+          <li><strong>10%</strong> 直播/活动通知</li>
+          <li><strong>5%</strong> 课程课包信息（不主动推销）</li>
+        </ul>
+      </div>
+      <div class="ibox bg-slate">
+        <div class="ibox-label" style="color:rgba(255,255,255,0.6)"><div class="dot" style="background:rgba(255,255,255,0.3)"></div>固定互动节奏</div>
+        <ul>
+          <li>每周2-3次核心内容发布（管理员主导）</li>
+          <li>每周1次集中提问时间（如周三 20:00-21:00）</li>
+          <li>每期1-2次教师/考官直播</li>
+          <li>每期1次个案材料公开点评</li>
+          <li>每周1次顾问私聊跟进（重点跟已提交材料者）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note-bar nb-purple">
+      <strong>★ 内容生产SOP</strong>：每期社群开始<strong>前2周</strong>完成内容框架；学术负责人审核所有诊断类内容；运营按统一模板发布，顾问不在群内随意输出专业判断（防止口径不一致）。内容格式统一：<strong>问题情境 → PE判断逻辑 → 行动建议</strong>，不超过300字/条
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<div class="funnel-connector"><div class="connector-label">触发信号识别 → 销售主动介入</div></div>
+
+<!-- ════════════════════════════════
+     STAGE 4 · CONVERSION
+════════════════════════════════ -->
+<div class="stage-4-w">
+<div class="stage s4" id="stage-4">
+  <div class="stage-header" onclick="toggle(4)">
+    <div class="stage-badge">🎯</div>
+    <div class="stage-meta">
+      <div class="stage-eyebrow">第四阶段 · 转化核心</div>
+      <div class="stage-title">触发信号识别 · 一对一诊断</div>
+      <div class="stage-sub">破冰课包作为"教师面试课"，收费诊断筛选真实意愿</div>
+    </div>
+    <div class="stage-right">
+      <div class="stage-pill">Sales核心阶段</div>
+      <div class="chevron" id="chev4">›</div>
+    </div>
+  </div>
+  <div class="stage-body" id="body4">
+  <div class="stage-body-inner">
+    <div class="body-top-gap"></div>
+    <div class="grid-2">
+      <div class="ibox bg-coral">
+        <div class="ibox-label" style="color:#F0A08C"><div class="dot" style="background:#D9543A"></div>触发信号 · 顾问主动私信</div>
+        <ul>
+          <li class="hi">主动提交学生试卷/essay/写作样本</li>
+          <li class="hi">明确说明当前成绩与目标成绩差距</li>
+          <li>询问具体exam board相关问题</li>
+          <li>参加完整直播并在直播中提问</li>
+          <li>连续多次参与群内讨论</li>
+          <li>询问教师背景或考官资质</li>
+          <li class="hi">主动询问10/30/50小时课包区别</li>
+          <li>提到即将到来的Mock/考试/转学节点</li>
+          <li>表示学校教师无法解决具体问题</li>
+        </ul>
+        <div class="note-bar nb-coral" style="margin-top:12px; margin-left:-14px; margin-right:-14px; border-radius:0 0 10px 0">
+          注意：部分高价值家长很少发言，但会阅读所有内容并提交材料，不应以群内活跃度判断购买意愿
+        </div>
+      </div>
+
+      <div class="ibox bg-slate">
+        <div class="ibox-label" style="color:rgba(255,255,255,0.6)"><div class="dot" style="background:rgba(255,255,255,0.3)"></div>一对一诊断 · 标准输出</div>
+        <ul>
+          <li>学生当前阶段 + 问题分类</li>
+          <li>当前成绩与目标成绩的差距量化</li>
+          <li>优先解决的1-2个核心问题</li>
+          <li>预计学习周期（建议8-12周）</li>
+          <li>推荐教师层级（£90 / £130）</li>
+          <li>推荐课包（10 / 30 / 50小时）</li>
+          <li>阶段评估节点设置</li>
+          <li>家长和学生需要配合的具体事项</li>
+        </ul>
+        <div class="note-bar nb-blue" style="margin-top:12px; margin-left:-14px; margin-right:-14px; border-radius:0 0 10px 0">
+          诊断输出必须是<strong>可理解的学习路径</strong>，不能只说"建议上课"
+        </div>
+      </div>
+    </div>
+
+    <!-- 产品设计补充 -->
+    <div class="grid-2" style="margin-top:12px">
+      <div class="note-bar nb-coral">
+        <strong>★ 破冰课包的正确定位</strong>：定位为<strong>"教师面试课"</strong>而非试听。话术：「第一节课您可以全程观察教师如何分析孩子的答题，如果方向对了，我们再讨论后续计划。」S类家长对这个定位接受度极高，且能自然引导至10小时课包。
+      </div>
+      <div class="note-bar nb-coral">
+        <strong>★ 收费诊断设计（£19-49）</strong>：含试卷/essay/能力深度分析，由资深教师完成，购买课包后全额抵扣，每期限5名额。目的是筛选<strong>真实行动意愿</strong>而非筛选预算——能付£30诊断费的家长几乎一定会认真配合。免费试听不建议作为主要转化产品。
+      </div>
+    </div>
+
+  </div>
+  </div>
+</div>
+</div>
+
+<div class="funnel-connector"><div class="connector-label">方案匹配 → 发送课程建议 → 付款</div></div>
+
+<!-- ════════════════════════════════
+     STAGE 5 · CLOSING
+════════════════════════════════ -->
+<div class="stage-5-w">
+<div class="stage s5" id="stage-5">
+  <div class="stage-header" onclick="toggle(5)">
+    <div class="stage-badge">✅</div>
+    <div class="stage-meta">
+      <div class="stage-eyebrow">第五阶段 · 成交</div>
+      <div class="stage-title">课包匹配 · 教师配置 · 成交</div>
+      <div class="stage-sub">S类主推10/30小时，A类主推30/50小时长期课包</div>
+    </div>
+    <div class="stage-right">
+      <div class="stage-pill">Sales + 学术</div>
+      <div class="chevron" id="chev5">›</div>
+    </div>
+  </div>
+  <div class="stage-body" id="body5">
+  <div class="stage-body-inner">
+    <div class="body-top-gap"></div>
+    <div class="grid-2">
+      <div class="ibox bg-green">
+        <div class="ibox-label" style="color:#7DC4A0"><div class="dot" style="background:#2E7D52"></div>S类 · 课包匹配矩阵</div>
+        <table class="product-table">
+          <thead><tr><th>情况</th><th>教师配置</th><th>课包</th></tr></thead>
+          <tbody>
+            <tr><td>单项问题/短期冲刺</td><td><strong>£90或£130教师</strong></td><td>10小时</td></tr>
+            <tr><td>系统性成绩提升</td><td><strong>£90教师为主</strong></td><td>30小时</td></tr>
+            <tr><td>关键分数边界冲刺</td><td><strong>£130诊断+£90执行</strong></td><td>10-30小时</td></tr>
+            <tr><td>多科目/严重基础问题</td><td><strong>组合教师</strong></td><td>30-50小时</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,0.45)">考官教师重点用于：初始诊断 · 考试策略 · 试卷审核 · 阶段复盘 · 考前校准</div>
+      </div>
+      <div class="ibox bg-blue">
+        <div class="ibox-label" style="color:#7DC4EE"><div class="dot" style="background:#1D6FA4"></div>A类 · 课包匹配矩阵</div>
+        <table class="product-table">
+          <thead><tr><th>情况</th><th>教师配置</th><th>课包</th></tr></thead>
+          <tbody>
+            <tr><td>单项能力修复</td><td><strong>£70或£90教师</strong></td><td>30小时</td></tr>
+            <tr><td>长期学术能力建设</td><td><strong>£70或£90教师</strong></td><td>50小时</td></tr>
+            <tr><td>多科衔接</td><td><strong>主教师+学科教师</strong></td><td>50小时</td></tr>
+            <tr><td>IGCSE前准备</td><td><strong>£90教师阶段评估</strong></td><td>30-50小时</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,0.45)">价值叙事：「现在建基础，比到IGCSE再救火便宜得多，也效果好得多」</div>
+      </div>
+    </div>
+    <div class="note-bar nb-teal" style="margin-top:12px">
+      <strong>销售严禁承诺</strong>：保证A* · 保证升学结果 · 固定课时内提升具体等级 · 某位教师永久可用 · 所有科目问题一个课程全部解决。所有重要口头承诺保留书面记录。
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<div class="funnel-connector"><div class="connector-label">退出Lead社群逻辑 → 进入独立服务体系</div></div>
+
+<!-- ════════════════════════════════
+     STAGE 6 · RETENTION
+════════════════════════════════ -->
+<div class="stage-6-w">
+<div class="stage s6" id="stage-6">
+  <div class="stage-header" onclick="toggle(6)">
+    <div class="stage-badge">🔄</div>
+    <div class="stage-meta">
+      <div class="stage-eyebrow">第六阶段 · 长期价值</div>
+      <div class="stage-title">付费承接 · 续费 · 跨科转化 · 转介绍</div>
+      <div class="stage-sub">A类→S类升级路径 · 转介绍是最高质量Lead来源</div>
+    </div>
+    <div class="stage-right">
+      <div class="stage-pill">客户成功</div>
+      <div class="chevron" id="chev6">›</div>
+    </div>
+  </div>
+  <div class="stage-body" id="body6">
+  <div class="stage-body-inner">
+    <div class="body-top-gap"></div>
+    <div class="grid-2">
+      <div class="ibox bg-blue">
+        <div class="ibox-label" style="color:#7DC4EE"><div class="dot" style="background:#1D6FA4"></div>付费服务群标准配置</div>
+        <ul>
+          <li>成员：<strong>家长 + 课程顾问 + 教师</strong>（必要时加入学术负责人）</li>
+          <li>明确课程目标 / 排课安排 / 阶段反馈 / 缺课规则</li>
+          <li>顾问响应时间承诺（建议工作日4小时内）</li>
+          <li>阶段复盘节点（建议每10课时一次）</li>
+          <li class="hi"><strong>续费评估节点</strong>：课包剩余20%时顾问主动提起，不等家长询问</li>
+          <li>教师更换规则提前说明（避免成为投诉触发点）</li>
+        </ul>
+      </div>
+      <div class="ibox bg-slate">
+        <div class="ibox-label" style="color:rgba(255,255,255,0.6)"><div class="dot" style="background:rgba(255,255,255,0.3)"></div>续费 + 跨科 + 转介绍路径</div>
+        <ul>
+          <li><strong>S类：</strong>冲刺完成 → 成绩复盘 → 下一科目 → A-Level / 大学申请</li>
+          <li><strong>A类：</strong>KS3能力 → IGCSE Readiness → IGCSE学科 → S类冲刺</li>
+          <li class="hi"><strong>转介绍触发时间</strong>：付费后第5节课结束时，顾问主动触达：「孩子上课状态很好，如果有朋友也在准备[科目]，可以安排优先评估...」</li>
+          <li class="hi"><strong>转介绍激励</strong>：推荐成功后送£30课时抵扣券（对高客单价家长有意义但不显廉价）</li>
+          <li><strong>期满未成交家长唤醒</strong>：社群结束30天内，顾问根据CRM标签定向私信，推送下期活动或新相关内容</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+
+</div><!-- end funnel-wrap -->
+
+<!-- ════════════════════════════════
+     KPI SECTION
+════════════════════════════════ -->
+<div class="kpi-section">
+  <div class="kpi-title">核心追踪指标</div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-metric" style="color:#F5C96A">材料提交率</div>
+      <div class="kpi-name">入群家长中提交试卷/essay的比例</div>
+      <div class="kpi-target" style="background:rgba(232,168,56,0.15);color:#F5C96A">目标 &gt;60%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-metric" style="color:#7DC4EE">诊断预约率</div>
+      <div class="kpi-name">入群至完成一对一诊断的比例</div>
+      <div class="kpi-target" style="background:rgba(29,111,164,0.15);color:#7DC4EE">目标 &gt;40%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-metric" style="color:#F0A08C">诊断→成交率</div>
+      <div class="kpi-name">完成诊断后购买课包的比例</div>
+      <div class="kpi-target" style="background:rgba(217,84,58,0.15);color:#F0A08C">目标 &gt;55%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-metric" style="color:#7DC4A0">平均课包金额</div>
+      <div class="kpi-name">30小时以上课包占比</div>
+      <div class="kpi-target" style="background:rgba(46,125,82,0.15);color:#7DC4A0">目标 &gt;50%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-metric" style="color:#B49FDA">续费率</div>
+      <div class="kpi-name">首期课包结束后继续上课的比例</div>
+      <div class="kpi-target" style="background:rgba(107,75,168,0.15);color:#B49FDA">目标 &gt;65%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-metric" style="color:#6DD4C4">转介绍率</div>
+      <div class="kpi-name">付费客户中产生推荐的比例</div>
+      <div class="kpi-target" style="background:rgba(14,140,122,0.15);color:#6DD4C4">目标 &gt;20%</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end main -->
+
+<div class="page-footer">PE Private Community SOP · Prominent Education · 内部文件，请勿对外分享</div>
+
+<script>
+const openStates = {};
+function toggle(i) {
+  const body = document.getElementById('body' + i);
+  const chev = document.getElementById('chev' + i);
+  const isOpen = body.classList.toggle('open');
+  chev.classList.toggle('open', isOpen);
+  openStates[i] = isOpen;
+}
+// Default open stage 0
+toggle(0);
+</script>
+</body>
+</html>
